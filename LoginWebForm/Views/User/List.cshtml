@@ -1,0 +1,61 @@
+﻿@model IEnumerable<LoginWebForm.Models.UserModel>
+
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>User List</h1>
+
+<p style="float:right">
+		<a asp-action="Create" class="btn btn-primary">Add New</a>
+	</p>
+	<br />
+<table class="table">
+    <thead>
+        <tr>
+             @*<th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+             @*<td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <form>
+					@Html.ActionLink("Edit", "Create", new {  id=item.FirstName, item.LastName, item.Email, item.PasswordHash },new {@class="btn btn-sm btn-info "}) |
+					<button type="submit" formmethod="get" class="btn btn-sm btn-primary" asp-controller="User" asp-action="List" asp-route-id=@item.Id>
+						Detail
+					</button> |
+                    <button type="submit" formmethod="get"  class="btn btn-sm btn-danger" asp-controller="User" asp-action="Delete" asp-route-id=@item.Id >
+						Delete
+					</button>
+				</form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

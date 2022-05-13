@@ -1,0 +1,28 @@
+﻿@model LoginWebForm.Models.Designation
+
+@{
+	ViewData["Title"] = "DesignationDetail";
+}
+
+<h1>DesignationDetail</h1>
+<br />
+<div>
+	<h4>Designation</h4>
+	<div class="col-md-6">
+		<hr />
+		<dl class="row">
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Name)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Name)
+			</dd>
+		</dl>
+	</div>
+
+</div>
+<div>
+	<form>
+		<button type="submit" formmethod="get" style="margin-left:auto" class="btn btn-primary col-md-1 mb-5 " asp-controller="Designation" asp-action="DesignatonList">Back</button>
+	</form>
+</div>

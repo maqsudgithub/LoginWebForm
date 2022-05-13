@@ -1,0 +1,71 @@
+﻿@model IEnumerable<LoginWebForm.Models.Department>
+
+@{
+	ViewData["Title"] = "DepartmentList";
+}
+<style>
+    .avatar{
+        vertical-align:middle;
+        width:50px;
+        height:50px;
+        border-radius:50%;
+    }
+    #wid{
+        width:350px;
+    }
+</style>
+<h1>Department List</h1>
+<html>
+
+<body>
+	<p style="float:right">
+		<a asp-action="Create" class="btn btn-primary">Add New</a>
+	</p>
+	<br />
+	<div class="col-4 p-0 justify-content-end">
+		<form asp-controller="Department" asp-action="DepartmentList">
+			<span class="btn-group">
+				<input class="form-control" type="text" name="SearchText" placeholder="--Searching By Name--" id="wid" />
+				<input class="btn btn-success pb-l-4" type="submit" value="Search" />
+			</span>
+		</form>
+	</div>
+	<br />
+	<table class="table">
+		<thead id="tablehead">
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Name)
+				</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr id="trow">
+					<td>
+						@Html.DisplayFor(modelItem => item.Name)
+					</td>
+					<td>
+						<form>
+							@Html.ActionLink("Edit", "Create", new {  id=item.ID, item.Name },new {@class="btn btn-sm btn-info "}) |
+
+
+
+							<button type="submit" formmethod="get" class="btn btn-sm btn-primary" asp-controller="Department" asp-action="DepartmentDetail" asp-route-id=@item.ID>
+								Detail
+							</button> |
+
+
+							<button type="submit" formmethod="get"  class="btn btn-sm btn-danger" asp-controller="Department" asp-action="Delete" asp-route-id=@item.ID >
+								Delete
+							</button>
+						</form>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</body>
+</html>
